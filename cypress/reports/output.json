@@ -1,0 +1,183 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-15T08:56:07.337Z",
+    "end": "2021-05-15T08:56:08.756Z",
+    "duration": 1395,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "266c37b0-dfe8-4ee3-8d7c-4d3d07e952d4",
+      "title": "",
+      "fullFile": "cypress/integration/TestFolder/DemoTestCases.js",
+      "file": "cypress/integration/TestFolder/DemoTestCases.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+          "title": "Validate is CRUD options",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate Get Request",
+              "fullTitle": "Validate is CRUD options Validate Get Request",
+              "timedOut": null,
+              "duration": 905,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: 'https://gorest.co.in/public-api/users/123/posts',\n  headers: {\n    'authorization': 'Bearer ' + accesstoken\n  }\n}).then(function (res) {\n  expect(res.status).to.eq(200);\n  expect(res.body.meta.pagination).has.property('limit', 20);\n  expect(res.body).has.to.deep.equal({\n    \"code\": 200,\n    \"meta\": {\n      \"pagination\": {\n        \"total\": 0,\n        \"pages\": 0,\n        \"page\": 1,\n        \"limit\": 20\n      }\n    },\n    \"data\": []\n  });\n});",
+              "err": {},
+              "uuid": "55f95b9e-2f4d-4e55-ae68-c502b36956d9",
+              "parentUUID": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate Post Request",
+              "fullTitle": "Validate is CRUD options Validate Post Request",
+              "timedOut": null,
+              "duration": 128,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.getLocalStorage(\"textEmail\").then(function (textEmail) {\n  testEmail = textEmail + '@gmail.com';\n  cy.log(testEmail);\n  cy.request({\n    method: 'POST',\n    url: 'https://gorest.co.in/public-api/users',\n    body: {\n      \"name\": 'Test Automation',\n      \"gender\": \"Male\",\n      \"email\": testEmail,\n      \"status\": \"Active\"\n    },\n    headers: {\n      'authorization': 'Bearer ' + accesstoken\n    }\n  }).then(function (res) {\n    expect(res.body.data).has.property('email', testEmail);\n    expect(res.body.data).has.property('gender', 'Male');\n    expect(res.body.data).has.property('status', 'Active');\n    userId = res.body.data.id;\n    cy.log(userId);\n  });\n});",
+              "err": {},
+              "uuid": "34126a07-ff00-43ac-bc5e-c72a3db99b3d",
+              "parentUUID": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate Put Request",
+              "fullTitle": "Validate is CRUD options Validate Put Request",
+              "timedOut": null,
+              "duration": 129,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'PUT',\n  url: 'https://gorest.co.in/public-api/users/' + userId,\n  body: {\n    \"name\": 'Test Automation',\n    \"gender\": \"Female\",\n    \"email\": testEmail,\n    \"status\": \"Active\"\n  },\n  headers: {\n    'authorization': 'Bearer ' + accesstoken\n  }\n}).then(function (res) {\n  expect(res.body.data).has.property('email', testEmail);\n  expect(res.body.data).has.property('gender', 'Female');\n  expect(res.body.data).has.property('status', 'Active');\n});",
+              "err": {},
+              "uuid": "bca6d8f3-e3f3-438f-a792-b36e5e0a737d",
+              "parentUUID": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate Delete Request",
+              "fullTitle": "Validate is CRUD options Validate Delete Request",
+              "timedOut": null,
+              "duration": 109,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'DELETE',\n  url: 'https://gorest.co.in/public-api/users/' + userId,\n  headers: {\n    'authorization': 'Bearer ' + accesstoken\n  }\n}).then(function (res) {\n  expect(res.body).has.property('code', 204);\n});",
+              "err": {},
+              "uuid": "5e0852c0-67f4-4480-ad7b-60698b643983",
+              "parentUUID": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Email already existing",
+              "fullTitle": "Validate is CRUD options Email already existing",
+              "timedOut": null,
+              "duration": 124,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: 'https://gorest.co.in/public-api/users',\n  body: {\n    \"name\": 'Test Automation',\n    \"gender\": \"Male\",\n    \"email\": \"lk5Q8zc2NV2@gmail.com\",\n    \"status\": \"Active\"\n  },\n  headers: {\n    'authorization': 'Bearer ' + accesstoken\n  }\n}).then(function (res) {\n  expect(res.body.data[0]).has.property('message', \"has already been taken\");\n});",
+              "err": {},
+              "uuid": "1c2ef4bb-7481-4c74-9ada-71e89cb36d75",
+              "parentUUID": "7ae2d5f8-c957-475d-afb1-2dd69192fa04",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "55f95b9e-2f4d-4e55-ae68-c502b36956d9",
+            "34126a07-ff00-43ac-bc5e-c72a3db99b3d",
+            "bca6d8f3-e3f3-438f-a792-b36e5e0a737d",
+            "5e0852c0-67f4-4480-ad7b-60698b643983",
+            "1c2ef4bb-7481-4c74-9ada-71e89cb36d75"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1395,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "reportFilename": "report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
